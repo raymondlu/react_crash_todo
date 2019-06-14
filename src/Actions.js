@@ -15,10 +15,10 @@ export const delTodo = (id) => {
     };
 };
 
-export const addTodo = (title) => {
+export const addTodo = (todoData) => {
     return {
         type: ActionTypes.ADDTODO,
-        title: title
+        data: todoData
     };
 };
 
@@ -40,7 +40,7 @@ export const addTodo = (title) => {
                 completed: false
               })
             .then(res => {
-                dispatch(addTodo(title));
+                dispatch(addTodo(res.data));
             });
         };
       }
