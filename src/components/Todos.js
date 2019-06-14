@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoItem from './TodoItem';
 import PropTypes from 'prop-types';
+import * as Actions from '../Actions'
+import {connect} from 'react-redux';
 
-class Todos extends Component {
-  render() {
-    return this.props.todos.map((todo) => (
-      <TodoItem key={todo.id} todo={todo} markComplete={this.props.markComplete} delTodo={this.props.delTodo} />
-    ));
-  }
+function Todos(props) {
+  return props.todos.map((todo) => (
+      <TodoItem key={todo.id} todo={todo} markComplete={props.markComplete} delTodo={props.delTodo} />
+  ));
 }
 
 // PropTypes
@@ -17,4 +17,19 @@ Todos.propTypes = {
   delTodo: PropTypes.func.isRequired,
 }
 
-export default Todos;
+function mapStateToProps(state, ownProps) {
+  return {value: state};
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    markComplete: (id) => {
+      dispatch(Actions.markComplete(id));
+    },
+    delTodo: (id) => {
+      dispatch(Actions.delTodoReq(id));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);
