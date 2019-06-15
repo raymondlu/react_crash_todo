@@ -22,25 +22,25 @@ export const addTodo = (todoData) => {
     };
 };
 
-  // Delete Todo
-  export const delTodoReq = (id) => {
+// Delete Todo
+export const delTodoReq = (id) => {
     return (dispatch) => {
         axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
         .then(res => {
             dispatch(delTodo(id));
         });
     };
-  }
+}
 
-    // Add Todo
-    export const addTodoReq = (title) => {
-        return (dispatch) => {
-            axios.post('https://jsonplaceholder.typicode.com/todos', {
-                title,
-                completed: false
-              })
-            .then(res => {
-                dispatch(addTodo(res.data));
-            });
-        };
-      }
+// Add Todo
+export const addTodoReq = (title) => {
+    return (dispatch) => {
+        axios.post('https://jsonplaceholder.typicode.com/todos', {
+            title,
+            completed: false
+            })
+        .then(res => {
+            dispatch(addTodo(res.data));
+        });
+    };
+}
