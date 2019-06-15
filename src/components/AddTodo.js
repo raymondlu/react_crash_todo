@@ -22,7 +22,7 @@ function AddTodo(props) {
         name="title" 
         style={{ flex: '10', padding: '5px' }}
         placeholder="Add Todo ..." 
-        value={this.state.title}
+        value={title}
         onChange={onChange}
       />
       <input 
@@ -41,7 +41,7 @@ AddTodo.propTypes = {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {};
+  return state;
 }
 
 function mapDispatchToProps(dispatch, ownProps) {

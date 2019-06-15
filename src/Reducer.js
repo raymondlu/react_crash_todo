@@ -16,4 +16,7 @@ export default (state, action) => {
             return todo;
         }) }
     }
+
+    // default
+    return state;
 };

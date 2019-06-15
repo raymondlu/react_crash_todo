@@ -12,6 +12,4 @@ const storeEnhancers = compose(
     (f) => f,
 );
 
-const store = createStore(reducer, initState, storeEnhancers);
-
-export default store;
+export default createStore(reducer, initState, storeEnhancers);
