@@ -40,7 +40,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log("App state is ", state, "ownProps is ", ownProps);
   let props = {...state, ...ownProps};
   props.todos = props.todos ? props.todos : [];
   return props;

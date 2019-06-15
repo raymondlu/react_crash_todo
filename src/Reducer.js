@@ -1,7 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 
 export default (state, action) => {
-    console.log("state is", state, "action is ", action);
+    console.log("Reducer: state is", state, "action is ", action);
     const {type} = action;
     if (type === ActionTypes.ADDTODO) {
         return {...state, todos: [...state.todos, action.data] }
