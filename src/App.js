@@ -4,8 +4,9 @@ import Header from './components/layout/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
-// import uuid from 'uuid';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import * as Actions from './Actions';
+
 
 import './App.css';
 
@@ -15,8 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-      .then(res => this.setState({ todos: res.data }))
+    this.props.requestToDos();
   }
 
   render() {
@@ -28,7 +28,7 @@ class App extends Component {
             <Route exact path="/" render={props => (
               <React.Fragment>
                 <AddTodo />
-                <Todos todos={this.state.todos} />
+                <Todos todos={this.props.todos} />
               </React.Fragment>
             )} />
             <Route path="/about" component={About} />
@@ -39,4 +39,19 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state, ownProps) {
+  console.log("App state is ", state, "ownProps is ", ownProps);
+  let props = {...state, ...ownProps};
+  props.todos = props.todos ? props.todos : [];
+  return props;
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    requestToDos: () => {
+      dispatch(Actions.requestTodos());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

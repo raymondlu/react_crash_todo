@@ -5,9 +5,13 @@ import * as Actions from '../Actions'
 import {connect} from 'react-redux';
 
 function Todos(props) {
-  return props.todos.map((todo) => (
-      <TodoItem key={todo.id} todo={todo} markComplete={props.markComplete} delTodo={props.delTodo} />
-  ));
+  if (props.todos) {
+     return props.todos.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} markComplete={props.markComplete} delTodo={props.delTodo} />
+    )); 
+  } else {
+    return <div></div>;
+  }
 }
 
 // PropTypes
@@ -18,7 +22,7 @@ Todos.propTypes = {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {value: state};
+  return {...state, ...ownProps};
 }
 
 function mapDispatchToProps(dispatch, ownProps) {

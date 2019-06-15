@@ -22,6 +22,13 @@ export const addTodo = (todoData) => {
     };
 };
 
+export const addTodos = (todoData) => {
+    return {
+        type: ActionTypes.REQUESTTODOS,
+        data: todoData
+    };
+};
+
 // Delete Todo
 export const delTodoReq = (id) => {
     return (dispatch) => {
@@ -43,4 +50,12 @@ export const addTodoReq = (title) => {
             dispatch(addTodo(res.data));
         });
     };
+}
+
+// Request todos from server
+export const requestTodos = () => dispatch => {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+        .then(res => {
+            dispatch(addTodos(res.data));
+    })
 }

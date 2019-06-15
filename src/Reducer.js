@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 
 export default (state, action) => {
+    console.log("state is", state, "action is ", action);
     const {type} = action;
     if (type === ActionTypes.ADDTODO) {
         return {...state, todos: [...state.todos, action.data] }
@@ -15,6 +16,9 @@ export default (state, action) => {
             }
             return todo;
         }) }
+    }
+    else if (type === ActionTypes.REQUESTTODOS) {
+        return {...state, todos:action.data};
     }
 
     // default
